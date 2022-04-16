@@ -1,5 +1,9 @@
 # Package for project3 Gazebo visualization
 
+## Install submodule
+```
+git submodule update --init --recursive
+```
 ## build
 ```
 cd catkin_ws
