@@ -11,11 +11,11 @@ class TurtleBot:
         rate = rospy.Rate(1)
 
         # open loop controller
-        actions = iter(actions_list)
         while not rospy.is_shutdown(): 
-             cmd_vel_msg = self.actionToCmdVel(next(actions))
-             self.cmd_vel_pub.publish(cmd_vel_msg)
-             rate.sleep()
+            for action in actions_list:
+                cmd_vel_msg = self.actionToCmdVel(action)
+                self.cmd_vel_pub.publish(cmd_vel_msg)
+                rate.sleep()
              
 
     def actionToCmdVel(self, action): 

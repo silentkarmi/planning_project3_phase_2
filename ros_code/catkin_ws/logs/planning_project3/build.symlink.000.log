@@ -1,0 +1,6 @@
+Symlinking /home/longhongc/github/longhongc/planning_project3_phase_2/ros_code/catkin_ws/devel/lib/pkgconfig/planning_project3.pc
+Symlinking /home/longhongc/github/longhongc/planning_project3_phase_2/ros_code/catkin_ws/devel/lib/python3/dist-packages/planning_project3/__init__.py
+Symlinking /home/longhongc/github/longhongc/planning_project3_phase_2/ros_code/catkin_ws/devel/lib/planning_project3/test_turtlebot
+Symlinking /home/longhongc/github/longhongc/planning_project3_phase_2/ros_code/catkin_ws/devel/lib/planning_project3/cmake.lock
+Symlinking /home/longhongc/github/longhongc/planning_project3_phase_2/ros_code/catkin_ws/devel/share/planning_project3/cmake/planning_project3Config.cmake
+Symlinking /home/longhongc/github/longhongc/planning_project3_phase_2/ros_code/catkin_ws/devel/share/planning_project3/cmake/planning_project3Config-version.cmake
