@@ -1,3 +1,4 @@
+import math
 import numpy as np
 import cv2
 from dataclasses import dataclass
@@ -39,6 +40,16 @@ class Canvas:
                      Utility.getCoordinatesInWorldFrame(node.coord), 
                      color)
             cv2.imshow(CONSTANT.WINDOW_NAME, self._canvasArea)
+        else:
+            origin_x, origin_y, origin_thetha = node.coord
+            origin_parent_x = origin_x - CONSTANT.VECTOR_LEN * math.cos(math.radians(origin_thetha))
+            origin_parent_y = origin_y - CONSTANT.VECTOR_LEN * math.sin(math.radians(origin_thetha))
+            parent_thetha = 0
+            parent_origin = (origin_parent_x, origin_parent_y, parent_thetha)
+            cv2.line(self._canvasArea , 
+                     Utility.getCoordinatesInWorldFrame(parent_origin), 
+                     Utility.getCoordinatesInWorldFrame(node.coord), 
+                     color)
             
     def isOutsideObstacleSpace(self, coord):
         isValid = True

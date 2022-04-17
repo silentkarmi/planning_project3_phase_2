@@ -33,10 +33,10 @@ class Node:
         x1, y1, _ = CONSTANT.GOAL_NODE
         
         #manhattan heuristic
-        # self.cost2go = abs(x1 - x) + abs(y1 - y)
+        self.cost2go = abs(x1 - x) + abs(y1 - y)
         
         #euclidean heuristic
-        self.cost2go = round(math.sqrt((x1 - x)**2 + (y1 - y)**2))
+        # self.cost2go = round(math.sqrt((x1 - x)**2 + (y1 - y)**2))
     
     @staticmethod
     def actionCost():
