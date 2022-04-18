@@ -12,18 +12,22 @@ class Utility:
         """
             Can be used for transforming x, y cart coord to w, h image coord, vice versa.
         """
-        x = y = 0
-        if len(coord) > 2:
-            x, y, _ = coord
-        elif len(coord) == 2:
-            x, y = coord
+        x = coord[0]
+        y = coord[1]
             
         y = CONSTANT.ORIGIN_POINT_OFFSET - y
-        return (round(x), round(y))
+        return (int(round(x)), int(round(y)))
     
     @staticmethod
     def actionInDegree(thetha, d_thetha = 0):
         result = thetha + d_thetha
+        remainder = abs(result) % 360
+        
+        if result < 0:
+            result = -1 * remainder
+        else:
+            result = remainder
+            
         if result >= 360:
             result = result - 360
         elif result < 0:

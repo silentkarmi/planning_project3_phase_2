@@ -56,7 +56,9 @@ class PolygonObstacle(ObstacleInterface):
     
         result = True
         linePlaneEquationValues = []
-        x, y, _ = coord
+        x = coord[0]
+        y = coord[1]
+        
         for i in range(len(self.points)):
             x1, y1 = self.points[i]
             

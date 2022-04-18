@@ -17,7 +17,8 @@ class HexagonObstacle(PolygonObstacle):
         # created line equations to describe the hexagonal polygon
         result = True
         linePlaneEquationValues = []
-        x, y, _ = coord
+        x = coord[0]
+        y = coord[1]
         for i in range(len(self.points)):
             x1, y1 = self.points[i]
             

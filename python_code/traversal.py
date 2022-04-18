@@ -17,7 +17,7 @@ import numpy as np
 
 MAP_RESOLUTION_SCALE = 10
 MAP_THRESOLD_REGION = int(0.5 * MAP_RESOLUTION_SCALE)
-ANGLE_RESOLUTION = 30 # degree
+ANGLE_RESOLUTION = 10 # degree
 
 @dataclass
 class Traversal:
@@ -51,7 +51,7 @@ class Traversal:
         # Used for recording closed node in a higher resolution map
         self.closedNodeMap = np.zeros((CONSTANT.CANVAS_HEIGHT * MAP_RESOLUTION_SCALE, 
                                        CONSTANT.CANVAS_WIDTH * MAP_RESOLUTION_SCALE, 
-                                       360 // ANGLE_RESOLUTION), np.uint8)
+                                       (360 // ANGLE_RESOLUTION)+ 1), np.uint8)
         
         self.startNode = None
         self.endNode = None
@@ -65,9 +65,10 @@ class Traversal:
     def isNodeClosed(self, node): 
         # Transform x, y cart coord to w, h image coord
         w, h = Utility.getCoordinatesInWorldFrame(node.coord)
-        return self.closedNodeMap[h * MAP_RESOLUTION_SCALE, 
-                                  w * MAP_RESOLUTION_SCALE, 
-                                  Utility.actionInDegree(node.coord[2]) // ANGLE_RESOLUTION] != 0
+        angle = int(Utility.actionInDegree(node.coord[2]) // ANGLE_RESOLUTION)
+        return self.closedNodeMap[int(h * MAP_RESOLUTION_SCALE), 
+                                  int(w * MAP_RESOLUTION_SCALE), 
+                                  angle] != 0
 
     def pushNode(self, node):
         if node != None:
@@ -79,26 +80,21 @@ class Traversal:
 
                 
     def isThisGoalNode(self, nodeToCheck):
-        xcentre, ycentre, end_theta = self.endNode.coord
-        x, y, node_theta = nodeToCheck.coord
+        xcentre = self.endNode.coord[0]
+        ycentre = self.endNode.coord[1]
+        x = nodeToCheck.coord[0]
+        y = nodeToCheck.coord[1]
         in_goal = (x - xcentre)**2 + (y -ycentre)**2 - (CONSTANT.GOAL_THRESOLD)**2 < 0
-        is_goal = False
-        if in_goal:
-            if (Utility.actionInDegree(end_theta) == 
-                            Utility.actionInDegree(node_theta)):
-                is_goal = True
-
-        return is_goal
+        return in_goal
 
     def AddtoClosedNodeMap(self, node):
         # Transform x, y cart coord to w, h image coord
         w, h = Utility.getCoordinatesInWorldFrame(node.coord)
         matrix_x = int(h * MAP_RESOLUTION_SCALE - MAP_THRESOLD_REGION)
         matrix_y = int(w * MAP_RESOLUTION_SCALE - MAP_THRESOLD_REGION)
-        matrix_degree = Utility.actionInDegree(node.coord[2]) // ANGLE_RESOLUTION
+        matrix_degree = int(Utility.actionInDegree(node.coord[2]) // ANGLE_RESOLUTION)
         self.closedNodeMap[matrix_x, matrix_y, matrix_degree] = 1
         
-        counter = 0
         for counter_x in range(1, 11):
             for counter_y in range(1, 11):
                 self.closedNodeMap[matrix_x + counter_x , 
@@ -119,6 +115,8 @@ class Traversal:
             if self.isNodeClosed(tempNode):
                 continue
 
+            # self.canvaArea.drawNode(tempNode)
+            
             self._closeListNodes.append(tempNode)
             self._closedList.add((round(tempNode.coord[0]),
                                         round(tempNode.coord[1])))  
@@ -143,7 +141,6 @@ class Traversal:
         for tempNode in self._closeListNodes:
             self.canvaArea.drawNode(tempNode)
             counter +=1
-            cv2.waitKey(1)
             
     def backTrack(self):
         print("Backtracking...")
@@ -156,7 +153,7 @@ class Traversal:
     def drawSolution(self):  
         print("Drawing the solution...")     
         
-        mobileRobotStepSize = CONSTANT.MOBILE_ROBOT_RADIUS - CONSTANT.VECTOR_LEN + CONSTANT.WALL_CLEARANCE
+        mobileRobotStepSize = int(CONSTANT.MOBILE_ROBOT_RADIUS)
         if mobileRobotStepSize <= 0:
             mobileRobotStepSize = 1
         
@@ -167,5 +164,3 @@ class Traversal:
             
         for node in self._listSolution[::-1]:
             self.canvaArea.drawNode(node, CONSTANT.COLOR_BLUE)
-            
-        cv2.waitKey(1)

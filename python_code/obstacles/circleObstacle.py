@@ -19,7 +19,8 @@ class CircleObstacle(ObstacleInterface):
                    self.radius, CONSTANT.COLOR_RED, -1)
         
     def isOutside(self, coord):
-        x, y,_ = coord
+        x = coord[0]
+        y = coord[1]
         xcenter, ycenter = self.center
         result = (x - xcenter) ** 2 + (y - ycenter) ** 2 - (self.radius + CONSTANT.CLEARANCE) ** 2
         return result > 0

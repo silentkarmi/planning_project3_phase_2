@@ -23,33 +23,49 @@ class Canvas:
         for objObstacle in self._obstacles:
             objObstacle.draw(self._canvasArea)
         cv2.imshow(CONSTANT.WINDOW_NAME, self._canvasArea)
-        cv2.waitKey(1)
         
     def drawMobileRobot(self, node, color = CONSTANT.COLOR_LIGHT_BLUE):
         if isinstance(node, Node):
             cv2.circle(self._canvasArea , 
                      Utility.getCoordinatesInWorldFrame(node.coord),
-                     CONSTANT.MOBILE_ROBOT_RADIUS, 
+                     int(CONSTANT.MOBILE_ROBOT_RADIUS), 
                      color, -1)
             cv2.imshow(CONSTANT.WINDOW_NAME, self._canvasArea)
             
     def drawNode(self, node, color = CONSTANT.COLOR_WHITE):
         if isinstance(node, Node) and node.parentNode is not None:
-            cv2.line(self._canvasArea , 
+            x, y, start_thetha,_ = node.parentNode.coord
+            _,_,end_thetha, r = node.coord
+            
+            start_thetha = int(start_thetha)
+            end_thetha = int(end_thetha)
+            
+            if start_thetha == end_thetha:
+                cv2.line(self._canvasArea , 
                      Utility.getCoordinatesInWorldFrame(node.parentNode.coord), 
                      Utility.getCoordinatesInWorldFrame(node.coord), 
                      color)
-            cv2.imshow(CONSTANT.WINDOW_NAME, self._canvasArea)
+            else:
+                for i in range(start_thetha, end_thetha, 1):
+                    cv2.circle(self._canvasArea,
+                            Utility.getCoordinatesInWorldFrame((x + r * math.cos(math.radians(i)), 
+                                                                y + r * math.sin(math.radians(i)))),
+                            0, color, -1)
         else:
-            origin_x, origin_y, origin_thetha = node.coord
-            origin_parent_x = origin_x - CONSTANT.VECTOR_LEN * math.cos(math.radians(origin_thetha))
-            origin_parent_y = origin_y - CONSTANT.VECTOR_LEN * math.sin(math.radians(origin_thetha))
+            origin_x = node.coord[0]
+            origin_y = node.coord[1]
+            origin_thetha = node.coord[2]
+            origin_parent_x = origin_x - CONSTANT.MOBILE_ROBOT_RADIUS * math.cos(math.radians(origin_thetha))
+            origin_parent_y = origin_y - CONSTANT.MOBILE_ROBOT_RADIUS * math.sin(math.radians(origin_thetha))
             parent_thetha = 0
             parent_origin = (origin_parent_x, origin_parent_y, parent_thetha)
             cv2.line(self._canvasArea , 
                      Utility.getCoordinatesInWorldFrame(parent_origin), 
                      Utility.getCoordinatesInWorldFrame(node.coord), 
                      color)
+            
+        cv2.imshow(CONSTANT.WINDOW_NAME, self._canvasArea)
+        cv2.waitKey(1)
             
     def isOutsideObstacleSpace(self, coord):
         isValid = True
