@@ -1,3 +1,4 @@
+from ast import Constant
 import math
 import numpy as np
 import cv2
@@ -34,8 +35,12 @@ class Canvas:
             
     def drawNode(self, node, color = CONSTANT.COLOR_WHITE):
         if isinstance(node, Node) and node.parentNode is not None:
-            x, y, start_thetha,_ = node.parentNode.coord
-            _,_,end_thetha, r = node.coord
+            x = node.parentNode.coord[0]
+            y = node.parentNode.coord[1]
+            start_thetha = node.parentNode.coord[2]
+            
+            end_thetha = node.coord[2]
+            r = node.coord[3]
             
             start_thetha = int(start_thetha)
             end_thetha = int(end_thetha)

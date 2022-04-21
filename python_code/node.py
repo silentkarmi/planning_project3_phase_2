@@ -128,7 +128,7 @@ class Node:
                 newThetha = Utility.actionInDegree(math.degrees(thetha))
             
             deltaThetha = abs(newThetha - self.coord[2])
-            res = (newX, newY, newThetha, R)
+            res = (newX, newY, newThetha, R, action, Node.actionCost(deltaThetha, R))
             
             if Node.isCoordValid(res):
                 # if res != self.coord:

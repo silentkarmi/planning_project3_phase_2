@@ -163,4 +163,5 @@ class Traversal:
         self.canvaArea.drawMobileRobot(self.solutionNode, CONSTANT.COLOR_GREEN)
             
         for node in self._listSolution[::-1]:
+            print(node.coord)
             self.canvaArea.drawNode(node, CONSTANT.COLOR_BLUE)
