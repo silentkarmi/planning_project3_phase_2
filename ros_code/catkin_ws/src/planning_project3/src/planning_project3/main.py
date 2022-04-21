@@ -1,12 +1,10 @@
 #!/usr/bin/env python3
+# Author @ Kartikeya Mishra @ Chang-Hong Chen
 
-from planning_project3.turtlebot import TurtleBot
-
-from planning_project3.traversal import Traversal
-from planning_project3.node import Node
-# from planning_project3.constants import CONSTANT
-
+from constants import CONSTANT
 import cv2
+from traversal import Traversal
+from node import Node
 import time
 import math
 
@@ -58,18 +56,7 @@ if __name__ == "__main__":
                 print("Invalid End Coordinates. Try Again.\n")
         else:
             print("Invalid Start Coordinates. Try Again.\n")
-
-# if __name__ == '__main__':
-#     turtlebot = TurtleBot()
-#     actions_list = [(0.1, 0.1)] * 5 + \
-#                    [(0.2, 0.2)] * 5 + \
-#                    [(0.3, 0.3)] * 5 + \
-#                    [(0.2, 0.2)] * 5 + \
-#                    [(0.1, 0.1)] * 5 + \
-#                    [(0, 0)] * 5 
-
-    # try:
-    #     turtlebot.executeActions(actions_list)
-    # except rospy.ROSInterruptException:
-    #     pass
-
+    
+    
+    
+    
