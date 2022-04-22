@@ -3,7 +3,7 @@
 
 import sys 
 from dataclasses import dataclass
-from constants import CONSTANT
+from . constants import CONSTANT
 
 @dataclass
 class Utility:

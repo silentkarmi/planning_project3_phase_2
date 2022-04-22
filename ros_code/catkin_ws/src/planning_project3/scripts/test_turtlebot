@@ -2,9 +2,9 @@
 
 from planning_project3.turtlebot import TurtleBot
 
+from planning_project3.constants import CONSTANT
 from planning_project3.traversal import Traversal
 from planning_project3.node import Node
-# from planning_project3.constants import CONSTANT
 
 import cv2
 import time

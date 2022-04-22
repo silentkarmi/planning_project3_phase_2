@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # Author @ Kartikeya Mishra @ Chang-Hong Chen
 
-from constants import CONSTANT
+from . constants import CONSTANT
 import cv2
-from traversal import Traversal
-from node import Node
+from . traversal import Traversal
+from . node import Node
 import time
 import math
 
