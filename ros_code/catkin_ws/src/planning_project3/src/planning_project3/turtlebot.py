@@ -8,21 +8,20 @@ class TurtleBot:
         self.shaft_length = 0.16
 
     def executeActions(self, actions_list):
-        rate = rospy.Rate(1/5)
-
         # open loop controller
         while not rospy.is_shutdown(): 
-            for i in range(5): 
+            for i in range(3): 
                 cmd_vel_msg = self.actionToCmdVel((0, 0))
                 self.cmd_vel_pub.publish(cmd_vel_msg)
                 rospy.sleep(1)
 
-            for action in actions_list:
+            for i, action in enumerate(actions_list):
                 cmd_vel_msg = self.actionToCmdVel(action)
                 self.cmd_vel_pub.publish(cmd_vel_msg)
                 if (rospy.is_shutdown()): 
                     break 
-                rospy.sleep(20)
+                rospy.sleep(3.2)
+
 
              
 
