@@ -8,21 +8,34 @@ class TurtleBot:
         self.shaft_length = 0.16
 
     def executeActions(self, actions_list):
-        rate = rospy.Rate(1)
+        rate = rospy.Rate(1/5)
 
         # open loop controller
         while not rospy.is_shutdown(): 
+            for i in range(5): 
+                cmd_vel_msg = self.actionToCmdVel((0, 0))
+                self.cmd_vel_pub.publish(cmd_vel_msg)
+                rospy.sleep(1)
+
             for action in actions_list:
                 cmd_vel_msg = self.actionToCmdVel(action)
                 self.cmd_vel_pub.publish(cmd_vel_msg)
-                rate.sleep()
+                if (rospy.is_shutdown()): 
+                    break 
+                rospy.sleep(20)
+
              
 
     def actionToCmdVel(self, action): 
          left_v, right_v = action
+         left_v, right_v = left_v / 100, right_v / 100
          cmd_vel_msg = Twist() 
          cmd_vel_msg.linear.x = 0.5 * (right_v + left_v)
          cmd_vel_msg.angular.z = (right_v - left_v) / self.shaft_length
+         linear_log = "linear velocity: %f" % cmd_vel_msg.linear.x
+         angular_log = "angular velocity: %f" % cmd_vel_msg.angular.z
+         rospy.loginfo(linear_log)
+         rospy.loginfo(angular_log)
 
          return cmd_vel_msg
 

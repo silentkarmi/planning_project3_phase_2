@@ -153,7 +153,16 @@ class Traversal:
         while tempNode != None:
             self._listSolution.append(tempNode)
             tempNode = tempNode.parentNode
-            
+
+    def getSolution(self):
+        actionsList = []
+        for node in self._listSolution[::-1]:
+            if (len(node.coord) < 5): 
+                continue
+            actionsList.append(node.coord[4])
+
+        return actionsList
+
     def drawSolution(self):  
         print("Drawing the solution...")     
         
