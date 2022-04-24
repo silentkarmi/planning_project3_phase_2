@@ -28,10 +28,10 @@ class Utility:
         else:
             result = remainder
             
-        if result >= 360:
-            result = result - 360
-        elif result < 0:
-            result = 360 + result
+        # if result >= 360:
+        #     result = result - 360
+        # elif result < 0:
+        #     result = 360 + result
         
         return result
 

@@ -89,7 +89,7 @@ class Node:
             newY = 0
             if vL != vR:
                 # DIFFERENTIAL KINEMATICS
-                R = abs(0.5 * ((vL + vR) / (vR - vL)))
+                R = abs(0.5 * ((vL + vR) / (vR - vL))) + CONSTANT.ROBOT_RADIUS_INNER
                 angle = (vR - vL) / (2 * CONSTANT.ROBOT_RADIUS_INNER)
                 # angle  = thetha + angle * CONSTANT.TIME_INTERVAL
                 # newThetha = Utility.actionInDegree(math.degrees(angle))

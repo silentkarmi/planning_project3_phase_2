@@ -9,6 +9,7 @@ from planning_project3.node import Node
 import cv2
 import time
 import math
+import rospy
 
 if __name__ == "__main__":
     
@@ -61,7 +62,7 @@ if __name__ == "__main__":
                 except rospy.ROSInterruptException:
                     pass
 
-                cv2.waitKey(0)
+                # cv2.waitKey(0)
                 quit()
             else:
                 print("Invalid End Coordinates. Try Again.\n")

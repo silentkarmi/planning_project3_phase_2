@@ -35,6 +35,10 @@ class Canvas:
             
     def drawNode(self, node, color = CONSTANT.COLOR_WHITE):
         if isinstance(node, Node) and node.parentNode is not None:
+            
+            # print(node.parentNode)
+            # print(node)
+            
             x = node.parentNode.coord[0]
             y = node.parentNode.coord[1]
             start_thetha = node.parentNode.coord[2]
@@ -42,20 +46,43 @@ class Canvas:
             end_thetha = node.coord[2]
             r = node.coord[3]
             
-            start_thetha = int(start_thetha)
-            end_thetha = int(end_thetha)
+            action = node.coord[4]
             
-            if start_thetha == end_thetha:
+            # start_thetha = min(int(start_thetha), int(end_thetha))
+            # end_thetha = max(int(start_thetha), int(end_thetha))
+            
+            if action[0] == action[1]:
                 cv2.line(self._canvasArea , 
                      Utility.getCoordinatesInWorldFrame(node.parentNode.coord), 
                      Utility.getCoordinatesInWorldFrame(node.coord), 
                      color)
             else:
-                for i in range(start_thetha, end_thetha, 1):
-                    cv2.circle(self._canvasArea,
-                            Utility.getCoordinatesInWorldFrame((x + r * math.cos(math.radians(i)), 
-                                                                y + r * math.sin(math.radians(i)))),
-                            0, color, -1)
+                    # curveXpt = []
+                    # curveYpt = []
+                pts = []
+                start = 0
+                end = 0
+                if start_thetha < end_thetha:
+                    start = int(start_thetha)
+                    end = int(end_thetha)
+                else:
+                    start = int(end_thetha)
+                    end = int(start_thetha)
+                
+                # print(start, end)
+                for i in range(start, end + 1, 1):
+                    curveXpt = (x + r * math.cos(math.radians(i)))
+                    curveYpt = (y + r * math.sin(math.radians(i)))
+                    pts.append(Utility.getCoordinatesInWorldFrame((curveXpt,curveYpt)))
+                    
+                pts = np.array(pts, np.int32)
+                pts = pts.reshape((-1, 1, 2))
+                
+                if start_thetha < end_thetha:
+                    cv2.polylines(self._canvasArea, [pts], False, CONSTANT.COLOR_YELLOW)
+                else:
+                    cv2.polylines(self._canvasArea, [pts], False, CONSTANT.COLOR_ORANGE)
+
         else:
             origin_x = node.coord[0]
             origin_y = node.coord[1]
@@ -68,7 +95,8 @@ class Canvas:
                      Utility.getCoordinatesInWorldFrame(parent_origin), 
                      Utility.getCoordinatesInWorldFrame(node.coord), 
                      color)
-            
+        
+        
         cv2.imshow(CONSTANT.WINDOW_NAME, self._canvasArea)
         cv2.waitKey(1)
             

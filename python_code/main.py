@@ -14,7 +14,7 @@ if __name__ == "__main__":
         
         # startXCoord, startYCoord, startGoalThetha = (input("\nStart X, Y, Theta [Add Space in between the values]:")).split()
         # startXCoord, startYCoord, startGoalThetha = int(startXCoord), int(startYCoord), int(startGoalThetha)
-        startXCoord, startYCoord, startGoalThetha = int(16), int(16), 0
+        startXCoord, startYCoord, startGoalThetha = int(50), int(50), 0
         
         
         CONSTANT.START_NODE = (startXCoord, startYCoord, startGoalThetha, None)
@@ -29,7 +29,7 @@ if __name__ == "__main__":
             # endXCoord, endYCoord, endGoalThetha = (input("End X, Y, Theta [Add Space in between the values]:")).split()
             # endXCoord, endYCoord, endGoalThetha = int(endXCoord), int(endYCoord), math.radians(float(endGoalThetha))
         
-            endXCoord, endYCoord, endGoalThetha = int(150), int(150), math.radians(0.0)
+            endXCoord, endYCoord, endGoalThetha = int(700), int(700), math.radians(0.0)
             
             CONSTANT.GOAL_NODE = (endXCoord, endYCoord, endGoalThetha, None)
             

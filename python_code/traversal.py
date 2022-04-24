@@ -12,6 +12,7 @@ from utility import Utility
 from obstacles.circleObstacle import CircleObstacle
 from obstacles.hexagonObstacle import HexagonObstacle
 from obstacles.polygonObstacle import PolygonObstacle
+from obstacles.rectangularObject import RectangularObstacle
 
 import numpy as np
 
@@ -30,22 +31,46 @@ class Traversal:
         
         self.canvaArea = Canvas()
         
-        objCircle = CircleObstacle((300, 185), 40)
+        objCircle = CircleObstacle((200, 200), 100)
         self.canvaArea.addObstacle(objCircle)
         
-        objTriangularPolygon = PolygonObstacle([(36, 185),
-                                                (115, 210),
-                                                (80, 180),
-                                                (105, 100)])
-        self.canvaArea.addObstacle(objTriangularPolygon)
+        objCircle = CircleObstacle((200, 800), 100)
+        self.canvaArea.addObstacle(objCircle)
         
-        objHexagonPolygon = HexagonObstacle([(165, round(79.79275)),
-                                            (165, round(120.2073)),
-                                            (200, round(140.4145)),
-                                            (235, round(120.2073)),
-                                            (235, round(79.79275)),
-                                            (200, round(59.5855))])
-        self.canvaArea.addObstacle(objHexagonPolygon)
+        objRect = RectangularObstacle([(375, 425),
+                                       (375, 575),
+                                       (625, 575),
+                                       (625, 425)])
+        self.canvaArea.addObstacle(objRect)
+        
+        objRect = RectangularObstacle([(25, 425),
+                                       (25, 575),
+                                       (175, 575),
+                                       (175, 425)])
+        self.canvaArea.addObstacle(objRect)
+        
+        objRect = RectangularObstacle([(725, 205),
+                                       (725, 405),
+                                       (875, 405),
+                                       (875, 205)])
+        self.canvaArea.addObstacle(objRect)
+        
+        # objCircle = CircleObstacle((300, 185), 40)
+        # self.canvaArea.addObstacle(objCircle)
+        
+        # objTriangularPolygon = PolygonObstacle([(36, 185),
+        #                                         (115, 210),
+        #                                         (80, 180),
+        #                                         (105, 100)])
+        # self.canvaArea.addObstacle(objTriangularPolygon)
+        
+        # objHexagonPolygon = HexagonObstacle([(165, round(79.79275)),
+        #                                     (165, round(120.2073)),
+        #                                     (200, round(140.4145)),
+        #                                     (235, round(120.2073)),
+        #                                     (235, round(79.79275)),
+        #                                     (200, round(59.5855))])
+        # self.canvaArea.addObstacle(objHexagonPolygon)
         self.canvaArea.formObstaclesMap()
 
         # Used for recording closed node in a higher resolution map
@@ -114,8 +139,10 @@ class Traversal:
 
             if self.isNodeClosed(tempNode):
                 continue
-
+            
+            # cv2.waitKey(0)
             # self.canvaArea.drawNode(tempNode)
+            
             
             self._closeListNodes.append(tempNode)
             self._closedList.add((round(tempNode.coord[0]),
@@ -157,11 +184,19 @@ class Traversal:
         if mobileRobotStepSize <= 0:
             mobileRobotStepSize = 1
         
-        self.canvaArea.drawMobileRobot(self.startNode, CONSTANT.COLOR_YELLOW)
-        for node in self._listSolution[::mobileRobotStepSize]:
-            self.canvaArea.drawMobileRobot(node)
-        self.canvaArea.drawMobileRobot(self.solutionNode, CONSTANT.COLOR_GREEN)
+        # self.canvaArea.drawMobileRobot(self.startNode, CONSTANT.COLOR_YELLOW)
+        # for node in self._listSolution[::mobileRobotStepSize]:
+        #     self.canvaArea.drawMobileRobot(node)
+        # self.canvaArea.drawMobileRobot(self.solutionNode, CONSTANT.COLOR_GREEN)
             
         for node in self._listSolution[::-1]:
+            # if node.parentNode is not None:
+            #     cv2.line(self.canvaArea._canvasArea, 
+            #             Utility.getCoordinatesInWorldFrame(node.parentNode.coord), 
+            #             Utility.getCoordinatesInWorldFrame(node.coord), 
+            #             CONSTANT.COLOR_BLUE)
+            #     cv2.imshow(CONSTANT.WINDOW_NAME, self.canvaArea._canvasArea)
+                
             print(node.coord)
+            # cv2.waitKey(1)
             self.canvaArea.drawNode(node, CONSTANT.COLOR_BLUE)

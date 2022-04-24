@@ -2,6 +2,7 @@
 # Author @ Kartikeya Mishra
 
 from dataclasses import dataclass
+from hashlib import new
 import math
 import numpy as np
 
@@ -89,16 +90,16 @@ class Node:
             newY = 0
             if vL != vR:
                 # DIFFERENTIAL KINEMATICS
-                R = abs(0.5 * ((vL + vR) / (vR - vL)))
-                angle = (vR - vL) / (2 * CONSTANT.ROBOT_RADIUS_INNER)
-                # angle  = thetha + angle * CONSTANT.TIME_INTERVAL
-                # newThetha = Utility.actionInDegree(math.degrees(angle))
+                R = abs(0.5 * ((vL + vR) / (vR - vL))) + CONSTANT.ROBOT_RADIUS_INNER
+                angle = (vR - vL) / (2 * CONSTANT.ROBOT_RADIUS_INNER)                
+                omega_dt = angle * CONSTANT.TIME_INTERVAL
                 
-                # newX = x + R * math.cos(angle)
-                # newY = y + R * math.sin(angle)
+                # newThetha = thetha + omega_dt
+                # newX = x + R * math.cos(newThetha)
+                # newY = x + R * math.sin(newThetha)
+                # newThetha = Utility.actionInDegree(math.degrees(newThetha))
                 
                 #JACOBIAN KINTEMATICS
-                omega_dt = angle * CONSTANT.TIME_INTERVAL
                 
                 ICCx = x - R * math.sin(thetha)
                 ICCy = y + R * math.cos(thetha)

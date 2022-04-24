@@ -147,7 +147,6 @@ class Traversal:
         counter = 0
         for tempNode in self._closeListNodes:
             self.canvaArea.drawNode(tempNode)
-            counter +=1
             
     def backTrack(self):
         print("Backtracking...")
@@ -163,6 +162,8 @@ class Traversal:
             if (len(node.coord) < 5): 
                 continue
             actionsList.append(node.coord[4])
+            
+        actionsList.append((0,0)) #For stopping the robot
 
         return actionsList
 
@@ -173,10 +174,10 @@ class Traversal:
         if mobileRobotStepSize <= 0:
             mobileRobotStepSize = 1
         
-        self.canvaArea.drawMobileRobot(self.startNode, CONSTANT.COLOR_YELLOW)
-        for node in self._listSolution[::mobileRobotStepSize]:
-            self.canvaArea.drawMobileRobot(node)
-        self.canvaArea.drawMobileRobot(self.solutionNode, CONSTANT.COLOR_GREEN)
+        # self.canvaArea.drawMobileRobot(self.startNode, CONSTANT.COLOR_YELLOW)
+        # for node in self._listSolution[::mobileRobotStepSize]:
+        #     self.canvaArea.drawMobileRobot(node)
+        # self.canvaArea.drawMobileRobot(self.solutionNode, CONSTANT.COLOR_GREEN)
             
         for node in self._listSolution[::-1]:
             # print(node.coord)

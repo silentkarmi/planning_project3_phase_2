@@ -20,18 +20,20 @@ class TurtleBot:
                 self.cmd_vel_pub.publish(cmd_vel_msg)
                 if (rospy.is_shutdown()): 
                     break 
+                
+                rospy.sleep(0.5)
 
-                if cmd_vel_msg.angular.z != 0:  
-                    rospy.sleep(2.2)
-                else:
-                    rospy.sleep(1.95)
+                # if cmd_vel_msg.angular.z != 0:  
+                #     rospy.sleep(2.2)
+                # else:
+                #     rospy.sleep(1.95)
 
             for i in range(3): 
                 cmd_vel_msg = self.actionToCmdVel((0, 0))
                 self.cmd_vel_pub.publish(cmd_vel_msg)
                 rospy.sleep(1)
              
-            ROS_INFO("Finish"); 
+            rospy.loginfo("Finish"); 
             break; 
 
 
