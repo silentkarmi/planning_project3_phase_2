@@ -35,19 +35,22 @@ class Traversal:
         objCircle = CircleObstacle((200, 800), 100)
         self.canvaArea.addObstacle(objCircle)
         
-        objCircle = CircleObstacle((100, 500), 100)
-        self.canvaArea.addObstacle(objCircle)
-        
-        objCircle = CircleObstacle((100, 500), 100)
-        self.canvaArea.addObstacle(objCircle)
-        
-        objCircle = CircleObstacle((800, 300), 100)
-        self.canvaArea.addObstacle(objCircle)
-        
         objRect = RectangularObstacle([(375, 425),
                                        (375, 575),
                                        (625, 575),
                                        (625, 425)])
+        self.canvaArea.addObstacle(objRect)
+        
+        objRect = RectangularObstacle([(25, 425),
+                                       (25, 575),
+                                       (175, 575),
+                                       (175, 425)])
+        self.canvaArea.addObstacle(objRect)
+        
+        objRect = RectangularObstacle([(725, 205),
+                                       (725, 405),
+                                       (875, 405),
+                                       (875, 205)])
         self.canvaArea.addObstacle(objRect)
         
         self.canvaArea.formObstaclesMap()
