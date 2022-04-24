@@ -11,12 +11,27 @@ import time
 import math
 import rospy
 
+
+import roslaunch
+import rospkg
+
+import sys
+import signal
+
+def signal_handler(sig, frame):
+    print("")
+    print("bye bye!")
+    sys.exit(0)
+
+
 if __name__ == "__main__":
+    signal.signal(signal.SIGINT, signal_handler)
+    rospack = rospkg.RosPack()
     
     while (1):
         
-        startXCoord, startYCoord, startGoalThetha = (input("\nStart X, Y, Theta [Add Space in between the values]:")).split()
-        startXCoord, startYCoord, startGoalThetha = int(startXCoord), int(startYCoord), int(startGoalThetha)
+        startXCoord_m, startYCoord_m, startGoalThetha = (input("\nStart X, Y, Theta in meters [Add Space in between the values]:")).split()
+        startXCoord, startYCoord, startGoalThetha = int((float(startXCoord_m) + 5) * 100), int((float(startYCoord_m) + 5) * 100), int(startGoalThetha)
         
         
         CONSTANT.START_NODE = (startXCoord, startYCoord, startGoalThetha, None)
@@ -27,14 +42,24 @@ if __name__ == "__main__":
         
         objTraversal = Traversal()
         if objTraversal.canvaArea.isOutsideObstacleSpace(CONSTANT.START_NODE):
-                
-            endXCoord, endYCoord = (input("End X and Y [Add Space in between the values]:")).split()
-            endXCoord, endYCoord = int(endXCoord), int(endYCoord)
+            endXCoord_m, endYCoord_m = (input("End X and Y in meters [Add Space in between the values]:")).split()
+            endXCoord, endYCoord = int((float(endXCoord_m) + 5) * 100), int((float(endYCoord_m) + 5) * 100)
             
             CONSTANT.GOAL_NODE = (endXCoord, endYCoord, 0, None)
             
             if (objTraversal.canvaArea.isOutsideObstacleSpace(CONSTANT.GOAL_NODE)):
-                
+
+                uuid = roslaunch.rlutil.get_or_generate_uuid(None, False)
+                roslaunch.configure_logging(uuid)
+                file_path = rospack.get_path('planning_project3') + "/launch/gazebo.launch"
+                start_x = "x_pos:=" + str(startXCoord_m)
+                start_y = "y_pos:=" + str(startYCoord_m)
+                angle = "angle:=" + str(math.radians(startGoalThetha))
+                end_x = "goal_x:=" + str(endXCoord_m)
+                end_y = "goal_y:=" + str(endXCoord_m)
+                launch = roslaunch.parent.ROSLaunchParent(uuid, [(file_path, (start_x, start_y, angle, end_x, end_y))])
+                launch.start()
+       
                 # CONSTANT.WALL_CLEARANCE = int(input("What's the Clearance from the Mobile Robot:"))
                 
                 objTraversal.endNode = Node(CONSTANT.GOAL_NODE , None)
@@ -54,10 +79,12 @@ if __name__ == "__main__":
                 actionsList = objTraversal.getSolution()
                 turtlebot = TurtleBot()
 
-                try:
-                    turtlebot.executeActions(actionsList)
-                except rospy.ROSInterruptException:
-                    pass
+                start = input("Start the robot in gazebo (y/n): ")
+                if (start == 'y'):
+                    try:
+                        turtlebot.executeActions(actionsList)
+                    except rospy.ROSInterruptException:
+                        pass
 
                 # cv2.waitKey(0)
                 quit()
