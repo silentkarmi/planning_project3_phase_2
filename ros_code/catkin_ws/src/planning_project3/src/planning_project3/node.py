@@ -5,8 +5,8 @@ from dataclasses import dataclass
 import math
 import numpy as np
 
-from constants import CONSTANT
-from utility import Utility
+from . constants import CONSTANT
+from . utility import Utility
 
 @dataclass
 class Node:

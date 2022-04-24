@@ -4,9 +4,9 @@ import numpy as np
 import cv2
 from dataclasses import dataclass
 
-from constants import CONSTANT
-from node import Node
-from utility import Utility
+from . constants import CONSTANT
+from . node import Node
+from . utility import Utility
 
 
 @dataclass

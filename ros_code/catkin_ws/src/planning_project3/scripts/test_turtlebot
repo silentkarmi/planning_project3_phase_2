@@ -2,9 +2,9 @@
 
 from planning_project3.turtlebot import TurtleBot
 
+from planning_project3.constants import CONSTANT
 from planning_project3.traversal import Traversal
 from planning_project3.node import Node
-# from planning_project3.constants import CONSTANT
 
 import cv2
 import time
@@ -50,26 +50,20 @@ if __name__ == "__main__":
                 
                 # VISUALIZATION PART
                 objTraversal.canvaArea.drawObstacles()
-                objTraversal.drawNodeTree() # draws the node tree after solution is found
+                # objTraversal.drawNodeTree() # draws the node tree after solution is found
                 objTraversal.drawSolution() # draws the solution
+
+                actionsList = objTraversal.getSolution()
+                turtlebot = TurtleBot()
+
+                try:
+                    turtlebot.executeActions(actionsList)
+                except rospy.ROSInterruptException:
+                    pass
+
                 cv2.waitKey(0)
                 quit()
             else:
                 print("Invalid End Coordinates. Try Again.\n")
         else:
             print("Invalid Start Coordinates. Try Again.\n")
-
-# if __name__ == '__main__':
-#     turtlebot = TurtleBot()
-#     actions_list = [(0.1, 0.1)] * 5 + \
-#                    [(0.2, 0.2)] * 5 + \
-#                    [(0.3, 0.3)] * 5 + \
-#                    [(0.2, 0.2)] * 5 + \
-#                    [(0.1, 0.1)] * 5 + \
-#                    [(0, 0)] * 5 
-
-    # try:
-    #     turtlebot.executeActions(actions_list)
-    # except rospy.ROSInterruptException:
-    #     pass
-

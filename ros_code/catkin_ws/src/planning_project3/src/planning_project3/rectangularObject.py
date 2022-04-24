@@ -3,10 +3,10 @@
 
 import cv2
 from dataclasses import dataclass
-from obstacleInterface import ObstacleInterface
+from . obstacleInterface import ObstacleInterface
 
-from constants import CONSTANT
-from utility import Utility
+from . constants import CONSTANT
+from . utility import Utility
 import numpy as np
 import math
 

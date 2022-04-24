@@ -5,12 +5,12 @@ import cv2
 import heapq
 from dataclasses import dataclass
 
-from constants import CONSTANT
-from canvas import Canvas
-from node import Node
-from utility import Utility
-from circleObstacle import CircleObstacle
-from rectangularObject import RectangularObstacle
+from . constants import CONSTANT
+from . canvas import Canvas
+from . node import Node
+from . utility import Utility
+from . circleObstacle import CircleObstacle
+from . rectangularObject import RectangularObstacle
 
 import numpy as np
 
@@ -156,7 +156,16 @@ class Traversal:
         while tempNode != None:
             self._listSolution.append(tempNode)
             tempNode = tempNode.parentNode
-            
+
+    def getSolution(self):
+        actionsList = []
+        for node in self._listSolution[::-1]:
+            if (len(node.coord) < 5): 
+                continue
+            actionsList.append(node.coord[4])
+
+        return actionsList
+
     def drawSolution(self):  
         print("Drawing the solution...")     
         
@@ -170,5 +179,5 @@ class Traversal:
         self.canvaArea.drawMobileRobot(self.solutionNode, CONSTANT.COLOR_GREEN)
             
         for node in self._listSolution[::-1]:
-            print(node.coord)
+            # print(node.coord)
             self.canvaArea.drawNode(node, CONSTANT.COLOR_BLUE)
