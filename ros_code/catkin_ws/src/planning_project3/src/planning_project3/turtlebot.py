@@ -10,10 +10,10 @@ class TurtleBot:
     def executeActions(self, actions_list):
         # open loop controller
         while not rospy.is_shutdown(): 
-            for i in range(3): 
+            for i in range(2): 
                 cmd_vel_msg = self.actionToCmdVel((0, 0))
                 self.cmd_vel_pub.publish(cmd_vel_msg)
-                rospy.sleep(1)
+                rospy.sleep(0.5)
 
             for i, action in enumerate(actions_list):
                 cmd_vel_msg = self.actionToCmdVel(action)
