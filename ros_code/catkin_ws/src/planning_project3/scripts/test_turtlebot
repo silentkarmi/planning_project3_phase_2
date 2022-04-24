@@ -15,9 +15,8 @@ if __name__ == "__main__":
     
     while (1):
         
-        # startXCoord, startYCoord, startGoalThetha = (input("\nStart X, Y, Theta [Add Space in between the values]:")).split()
-        # startXCoord, startYCoord, startGoalThetha = int(startXCoord), int(startYCoord), int(startGoalThetha)
-        startXCoord, startYCoord, startGoalThetha = int(50), int(50), 0
+        startXCoord, startYCoord, startGoalThetha = (input("\nStart X, Y, Theta [Add Space in between the values]:")).split()
+        startXCoord, startYCoord, startGoalThetha = int(startXCoord), int(startYCoord), int(startGoalThetha)
         
         
         CONSTANT.START_NODE = (startXCoord, startYCoord, startGoalThetha, None)
@@ -29,12 +28,10 @@ if __name__ == "__main__":
         objTraversal = Traversal()
         if objTraversal.canvaArea.isOutsideObstacleSpace(CONSTANT.START_NODE):
                 
-            # endXCoord, endYCoord, endGoalThetha = (input("End X, Y, Theta [Add Space in between the values]:")).split()
-            # endXCoord, endYCoord, endGoalThetha = int(endXCoord), int(endYCoord), math.radians(float(endGoalThetha))
-        
-            endXCoord, endYCoord, endGoalThetha = int(700), int(700), math.radians(0.0)
+            endXCoord, endYCoord = (input("End X and Y [Add Space in between the values]:")).split()
+            endXCoord, endYCoord = int(endXCoord), int(endYCoord)
             
-            CONSTANT.GOAL_NODE = (endXCoord, endYCoord, endGoalThetha, None)
+            CONSTANT.GOAL_NODE = (endXCoord, endYCoord, 0, None)
             
             if (objTraversal.canvaArea.isOutsideObstacleSpace(CONSTANT.GOAL_NODE)):
                 
