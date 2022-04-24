@@ -31,7 +31,7 @@ class CONSTANT:
     WINDOW_NAME = "Project3_Phase_2"
     
     ACTION_COUNT_FOR_ONE_WHEEL = 3 # 3 + 1, Total = 16 ACTIONS
-    TIME_INTERVAL = 3 # in secs
+    TIME_INTERVAL = 2 # in secs
     
    
 
@@ -55,10 +55,8 @@ class CONSTANT:
               ACTIONS.append((CONSTANT.MAX_SPEED_WHEEL - i * SMALLEST_SPEED_UNIT, 
                              CONSTANT.MAX_SPEED_WHEEL - j * SMALLEST_SPEED_UNIT))
        ACTIONS = []
-       ACTIONS.append((6, 6))
-       ACTIONS.append((4, 8))
-       ACTIONS.append((8, 4))
-       ACTIONS.append((2, 10))
-       ACTIONS.append((10, 2))
+       ACTIONS.append((10, 10))
+       ACTIONS.append((1, 3))
+       ACTIONS.append((3, 1))
         
        return ACTIONS
