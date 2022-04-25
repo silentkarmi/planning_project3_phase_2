@@ -98,7 +98,7 @@ class Canvas:
         
         
         cv2.imshow(CONSTANT.WINDOW_NAME, self._canvasArea)
-        cv2.waitKey(0)
+        # cv2.waitKey(0)
         
        
             

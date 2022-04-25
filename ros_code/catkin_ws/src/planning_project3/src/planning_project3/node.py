@@ -24,10 +24,10 @@ class Node:
         self.calculateCost2Go()
         
     def __lt__(self, other):
-        return self.cost2come + self.cost2go < other.cost2come + other.cost2go
+        return self.cost2come + 0.90  * self.cost2go < other.cost2come + 0.90 * other.cost2go
         
     def __le__(self, other):
-        return self.cost2come + self.cost2go <= other.cost2come + other.cost2go
+        return self.cost2come + 0.90  * self.cost2go <= other.cost2come + 0.90  * other.cost2go
     
     def calculateCost2Go(self):
         x = self.coord[0]
@@ -35,8 +35,16 @@ class Node:
         x1 = CONSTANT.GOAL_NODE[0]
         y1 = CONSTANT.GOAL_NODE[1]
         
+        reward = 0
+        
+        # if len(self.coord) > 4:
+        #     action = self.coord[4]
+    
+        #     if action[0] == action[1]:
+        #         reward = 1
+
         #manhattan heuristic
-        self.cost2go = abs(x1 - x) + abs(y1 - y)
+        self.cost2go = abs(x1 - x) + abs(y1 - y) + reward
         
         #euclidean heuristic
         # self.cost2go = round(math.sqrt((x1 - x)**2 + (y1 - y)**2))

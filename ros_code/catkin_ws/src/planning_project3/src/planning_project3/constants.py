@@ -34,8 +34,6 @@ class CONSTANT:
     TIME_INTERVAL = 0.5 # in secs
     
    
-
-        
     # Internal Constants
     
     ORIGIN_POINT_OFFSET = CANVAS_HEIGHT

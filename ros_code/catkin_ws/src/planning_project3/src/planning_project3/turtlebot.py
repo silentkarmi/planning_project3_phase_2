@@ -13,7 +13,9 @@ class TurtleBot:
             for i in range(2): 
                 cmd_vel_msg = self.actionToCmdVel((0, 0))
                 self.cmd_vel_pub.publish(cmd_vel_msg)
-                rospy.sleep(0.5)
+                
+                TIME_INTERVAL = 0.5
+                rospy.sleep(TIME_INTERVAL)
 
             for i, action in enumerate(actions_list):
                 cmd_vel_msg = self.actionToCmdVel(action)
@@ -21,12 +23,7 @@ class TurtleBot:
                 if (rospy.is_shutdown()): 
                     break 
                 
-                rospy.sleep(0.5)
-
-                # if cmd_vel_msg.angular.z != 0:  
-                #     rospy.sleep(2.2)
-                # else:
-                #     rospy.sleep(1.95)
+                rospy.sleep(TIME_INTERVAL)
 
             for i in range(3): 
                 cmd_vel_msg = self.actionToCmdVel((0, 0))

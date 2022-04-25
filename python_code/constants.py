@@ -56,12 +56,17 @@ class CONSTANT:
     #           ACTIONS.append((CONSTANT.MAX_SPEED_WHEEL - i * SMALLEST_SPEED_UNIT, 
     #                          CONSTANT.MAX_SPEED_WHEEL - j * SMALLEST_SPEED_UNIT))
        
-       RPM1 = 8
-       RPM2 = 3
+       RPM1 = 22
+       RPM2 = 10
        ACTIONS = []
        ACTIONS.append((RPM1, RPM1))
-       ACTIONS.append((-8, 8))
-       ACTIONS.append((8, -8))
+       ACTIONS.append((RPM2, RPM2))
+       ACTIONS.append((-RPM1, RPM1))
+       ACTIONS.append((RPM1, -RPM1))
+       ACTIONS.append((RPM1, 0))
+       ACTIONS.append((0, RPM1))
+       ACTIONS.append((RPM1, RPM2))
+       ACTIONS.append((RPM2, RPM1))
     #    ACTIONS.append((RPM2, RPM2))
     #    ACTIONS.append((RPM2, RPM1))
     #    ACTIONS.append((RPM1, RPM2))

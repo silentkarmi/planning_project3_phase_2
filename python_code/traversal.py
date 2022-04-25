@@ -168,6 +168,7 @@ class Traversal:
         for tempNode in self._closeListNodes:
             self.canvaArea.drawNode(tempNode)
             counter +=1
+            cv2.waitKey(1)
             
     def backTrack(self):
         print("Backtracking...")
@@ -197,6 +198,6 @@ class Traversal:
             #             CONSTANT.COLOR_BLUE)
             #     cv2.imshow(CONSTANT.WINDOW_NAME, self.canvaArea._canvasArea)
                 
-            print(node.coord)
+            # print(node.coord)
             # cv2.waitKey(1)
             self.canvaArea.drawNode(node, CONSTANT.COLOR_BLUE)

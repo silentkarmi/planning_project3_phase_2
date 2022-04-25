@@ -12,30 +12,21 @@ if __name__ == "__main__":
     
     while (1):
         
-        # startXCoord, startYCoord, startGoalThetha = (input("\nStart X, Y, Theta [Add Space in between the values]:")).split()
-        # startXCoord, startYCoord, startGoalThetha = int(startXCoord), int(startYCoord), int(startGoalThetha)
-        startXCoord, startYCoord, startGoalThetha = int(50), int(50), 0
-        
+        startXCoord, startYCoord, startGoalThetha = (input("\nStart X, Y, Theta [Add Space in between the values]:")).split()
+        startXCoord, startYCoord, startGoalThetha = int(startXCoord), int(startYCoord), int(startGoalThetha)        
         
         CONSTANT.START_NODE = (startXCoord, startYCoord, startGoalThetha, None)
-        
-        if startGoalThetha % 30 != 0:
-                print("Invalid Start Goal Thetha, should be multiple of 30")
-                continue
         
         objTraversal = Traversal()
         if objTraversal.canvaArea.isOutsideObstacleSpace(CONSTANT.START_NODE):
                 
-            # endXCoord, endYCoord, endGoalThetha = (input("End X, Y, Theta [Add Space in between the values]:")).split()
-            # endXCoord, endYCoord, endGoalThetha = int(endXCoord), int(endYCoord), math.radians(float(endGoalThetha))
-        
-            endXCoord, endYCoord, endGoalThetha = int(700), int(700), math.radians(0.0)
+            endXCoord, endYCoord = (input("End X, Y [Add Space in between the values]:")).split()
+            endXCoord, endYCoord, endGoalThetha = int(endXCoord), int(endYCoord), 0
             
             CONSTANT.GOAL_NODE = (endXCoord, endYCoord, endGoalThetha, None)
             
             if (objTraversal.canvaArea.isOutsideObstacleSpace(CONSTANT.GOAL_NODE)):
-                
-                # CONSTANT.WALL_CLEARANCE = int(input("What's the Clearance from the Mobile Robot:"))
+            
                 
                 objTraversal.endNode = Node(CONSTANT.GOAL_NODE , None)
                 objTraversal.startNode = Node(CONSTANT.START_NODE, None)
