@@ -1,18 +1,16 @@
-# Project3 - Phase 1
+# Project3 - Phase 2
 It uses A* algorithm to find a path for the given map
 --------------------------------------------------------------------------------------------------
 >> When obstacle objects are drawn, they are inflated internally but not drawn on the screen.
 >> Mobile robot is considered as a point robot during calculation
    and obstacles are inflated by the radius of the mobile robot during calculation
->> You will see the clearance of 5mm + Mobile Robot Radius when nodes are traversed and see a gap.
 >> Color Meaning
     - Red : obstacle
-    - White : nodes traversed
+    - White : Straight Line
     - Black : clearance from the boundary and the obstacles (in the end of traversal) / empty space
-    - Blue : Path Line from start to end coordinates for the Mobile Robot
-    - Yellow : Start Node for the Mobile Robot
-    - Green : GOAL node for the Mobile Robot
-    - LightBlue : Intermediate Nodes which Mobile Robot took
+    - Yellow : Curving Left side
+    - LightBlue: Curving Right side
+    
 >> Even if, the solution found in seconds, 
    but worst Condition of drawing of whole graph traversal can take upto 5 minutes
 >> GitHub URL: https://github.com/silentkarmi/Project3_Planning_Robotics
@@ -24,7 +22,7 @@ It uses A* algorithm to find a path for the given map
     - utility.py - functions which used throughout Program
     - constants.py - declare constants which used throughout the Program
     - traversal.py - this is where the A* algorithm is implemented
->> Video Output of the program is included: Kartikeya_M_and_Chang-Hong_A_star.mp4
+>> Video Output of the program is included: DifferentialDrivePythonOutput.mkv
 >> This project has been done in a GROUP:
     - Kartikeya Mishra (UID: 118106755)
     - Chang-Hong Chen (UID: 117397857)

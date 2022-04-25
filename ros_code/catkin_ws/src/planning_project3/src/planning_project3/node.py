@@ -24,10 +24,10 @@ class Node:
         self.calculateCost2Go()
         
     def __lt__(self, other):
-        return self.cost2come + 0.90  * self.cost2go < other.cost2come + 0.90 * other.cost2go
+        return self.cost2come + self.cost2go < other.cost2come + other.cost2go
         
     def __le__(self, other):
-        return self.cost2come + 0.90  * self.cost2go <= other.cost2come + 0.90  * other.cost2go
+        return self.cost2come + self.cost2go <= other.cost2come + other.cost2go
     
     def calculateCost2Go(self):
         x = self.coord[0]
