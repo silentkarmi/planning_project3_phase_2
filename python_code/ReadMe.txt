@@ -13,7 +13,7 @@ It uses A* algorithm to find a path for the given map
     
 >> Even if, the solution found in seconds, 
    but worst Condition of drawing of whole graph traversal can take upto 5 minutes
->> GitHub URL: https://github.com/silentkarmi/Project3_Planning_Robotics
+>> GitHub URL: https://github.com/silentkarmi/planning_project3_phase_2
 >> Structure of the Program
     - main.py - main starting point of the Program
     - node.py - each coordinate is considered a node
