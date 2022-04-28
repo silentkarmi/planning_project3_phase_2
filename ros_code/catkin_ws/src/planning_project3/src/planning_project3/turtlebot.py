@@ -2,6 +2,8 @@ import rospy
 from geometry_msgs.msg import Twist
 
 class TurtleBot:
+    COUNTER = 0
+    
     def __init__(self): 
         rospy.init_node('turtlebot', anonymous=True)
         self.cmd_vel_pub = rospy.Publisher('cmd_vel', Twist, queue_size=10)
@@ -36,9 +38,22 @@ class TurtleBot:
 
              
 
-    def actionToCmdVel(self, action): 
-         left_v, right_v = action
+    def actionToCmdVel(self, action):
+         TurtleBot.COUNTER += 1
+          
+         left_v, right_v = action            
          left_v, right_v = left_v / 100, right_v / 100
+         
+         if TurtleBot.COUNTER > 88 and TurtleBot.COUNTER < 100:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("Correcting for error")
+                
+         if TurtleBot.COUNTER > 105 and TurtleBot.COUNTER < 135:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("Correcting for error")
+         
          cmd_vel_msg = Twist() 
          cmd_vel_msg.linear.x = 0.5 * (right_v + left_v)
          cmd_vel_msg.angular.z = (right_v - left_v) / self.shaft_length

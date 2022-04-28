@@ -29,28 +29,46 @@ class Traversal:
         
         self.canvaArea = Canvas()
         
-        objCircle = CircleObstacle((200, 200), 100)
-        self.canvaArea.addObstacle(objCircle)
-        
-        objCircle = CircleObstacle((200, 800), 100)
-        self.canvaArea.addObstacle(objCircle)
-        
-        objRect = RectangularObstacle([(375, 425),
-                                       (375, 575),
-                                       (625, 575),
-                                       (625, 425)])
+        objRect = RectangularObstacle([(0, 950 * CONSTANT.SCALE ),
+                                       (0, 1000 * CONSTANT.SCALE),
+                                       (CONSTANT.CANVAS_WIDTH, 1000 * CONSTANT.SCALE),
+                                       (CONSTANT.CANVAS_WIDTH, 950 * CONSTANT.SCALE)])
         self.canvaArea.addObstacle(objRect)
         
-        objRect = RectangularObstacle([(25, 425),
-                                       (25, 575),
-                                       (175, 575),
-                                       (175, 425)])
+        objRect = RectangularObstacle([(925 * CONSTANT.SCALE, 425 * CONSTANT.SCALE),
+                                       (925 * CONSTANT.SCALE, 575 * CONSTANT.SCALE),
+                                       (1075 * CONSTANT.SCALE, 575 * CONSTANT.SCALE),
+                                       (1075 * CONSTANT.SCALE, 425 * CONSTANT.SCALE)])
         self.canvaArea.addObstacle(objRect)
         
-        objRect = RectangularObstacle([(725, 205),
-                                       (725, 405),
-                                       (875, 405),
-                                       (875, 205)])
+        objRect = RectangularObstacle([(1425 * CONSTANT.SCALE, 650 * CONSTANT.SCALE),
+                                       (1425 * CONSTANT.SCALE, 800 * CONSTANT.SCALE),
+                                       (1575 * CONSTANT.SCALE, 800 * CONSTANT.SCALE),
+                                       (1575 * CONSTANT.SCALE, 650 * CONSTANT.SCALE)])
+        self.canvaArea.addObstacle(objRect)
+        
+        objRect = RectangularObstacle([(1425 * CONSTANT.SCALE, 200 * CONSTANT.SCALE),
+                                       (1425 * CONSTANT.SCALE, 350 * CONSTANT.SCALE),
+                                       (1575 * CONSTANT.SCALE, 350 * CONSTANT.SCALE),
+                                       (1575 * CONSTANT.SCALE, 200 * CONSTANT.SCALE)])
+        self.canvaArea.addObstacle(objRect)
+        
+        objRect = RectangularObstacle([(1925 * CONSTANT.SCALE, 425 * CONSTANT.SCALE),
+                                       (1925 * CONSTANT.SCALE, 575 * CONSTANT.SCALE),
+                                       (2075 * CONSTANT.SCALE, 575 * CONSTANT.SCALE),
+                                       (2075 * CONSTANT.SCALE, 425 * CONSTANT.SCALE)])
+        self.canvaArea.addObstacle(objRect)
+        
+        objRect = RectangularObstacle([(0, 0),
+                                       (0, 50 * CONSTANT.SCALE),
+                                       (CONSTANT.CANVAS_WIDTH, 50 * CONSTANT.SCALE),
+                                       (CONSTANT.CANVAS_WIDTH, 0)])
+        self.canvaArea.addObstacle(objRect)
+        
+        objRect = RectangularObstacle([(CONSTANT.CANVAS_WIDTH - 10, 50 * CONSTANT.SCALE),
+                                       (CONSTANT.CANVAS_WIDTH - 10, 950 * CONSTANT.SCALE),
+                                       (CONSTANT.CANVAS_WIDTH, 950 * CONSTANT.SCALE),
+                                       (CONSTANT.CANVAS_WIDTH, 50 * CONSTANT.SCALE)])
         self.canvaArea.addObstacle(objRect)
         
         self.canvaArea.formObstaclesMap()
@@ -91,7 +109,7 @@ class Traversal:
         ycentre = self.endNode.coord[1]
         x = nodeToCheck.coord[0]
         y = nodeToCheck.coord[1]
-        in_goal = (x - xcentre)**2 + (y -ycentre)**2 - (CONSTANT.GOAL_THRESOLD)**2 < 0
+        in_goal = x > xcentre and (y > ycentre - CONSTANT.GOAL_THRESOLD and y < ycentre + CONSTANT.GOAL_THRESOLD)
         return in_goal
 
     def AddtoClosedNodeMap(self, node):

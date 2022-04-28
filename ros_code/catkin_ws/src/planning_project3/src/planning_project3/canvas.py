@@ -65,20 +65,26 @@ class Canvas:
                 if start_thetha < end_thetha:
                     start = int(start_thetha)
                     end = int(end_thetha)
+                    for i in range(start, end + 1, 1):
+                        curveXpt = (x + r * math.cos(math.radians(i)))
+                        curveYpt = (y + r * math.sin(math.radians(i)))
+                        pts.append(Utility.getCoordinatesInWorldFrame((curveXpt,curveYpt)))
                 else:
-                    start = int(end_thetha)
-                    end = int(start_thetha)
+                    start = int(start_thetha)
+                    end = int(end_thetha)
+                    for i in range(start, end - 1, -1):
+                        curveXpt = (x + r * math.cos(math.radians(i)))
+                        curveYpt = (y + r * math.sin(math.radians(i)))
+                        pts.append(Utility.getCoordinatesInWorldFrame((curveXpt,curveYpt)))
                 
                 # print(start, end)
-                for i in range(start, end + 1, 1):
-                    curveXpt = (x + r * math.cos(math.radians(i)))
-                    curveYpt = (y + r * math.sin(math.radians(i)))
-                    pts.append(Utility.getCoordinatesInWorldFrame((curveXpt,curveYpt)))
+                
                     
                 pts = np.array(pts, np.int32)
                 pts = pts.reshape((-1, 1, 2))
                 
-                if start_thetha < end_thetha:
+                vL, vR = action
+                if vL < vR:
                     cv2.polylines(self._canvasArea, [pts], False, CONSTANT.COLOR_YELLOW)
                 else:
                     cv2.polylines(self._canvasArea, [pts], False, CONSTANT.COLOR_ORANGE)

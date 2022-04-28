@@ -28,24 +28,19 @@ if __name__ == "__main__":
     signal.signal(signal.SIGINT, signal_handler)
     rospack = rospkg.RosPack()
     
-    print("=========== NOTE =================")
-    print("X Y coordinates are in metres in float, thetha is in degrees")
-    print("Origin is (0,0) in Gazebo Simulator")
-    print("Min value is (-5.0, -5.0) of coordinate")
-    print("Max value is (5.0, 5.0) of coordinate")
-    print("==================================")
-    
     while (1):
         
-        startXCoord_m, startYCoord_m, startGoalThetha = (input("\nStart X, Y, Theta [Add Space in between the values]:")).split()
-        startXCoord, startYCoord, startGoalThetha = int((float(startXCoord_m) + 5) * 100), int((float(startYCoord_m) + 5) * 100), int(startGoalThetha)
+        # startXCoord_m, startYCoord_m, startGoalThetha = (input("\nStart X, Y, Theta [Add Space in between the values]:")).split()
+        startXCoord_m, startYCoord_m, startGoalThetha = 0, 0.5, 0
+        startXCoord, startYCoord, startGoalThetha = int((float(startXCoord_m)) * 100), int((float(startYCoord_m)) * 100), int(startGoalThetha)
         
         CONSTANT.START_NODE = (startXCoord, startYCoord, startGoalThetha, None)
         
         objTraversal = Traversal()
         if objTraversal.canvaArea.isOutsideObstacleSpace(CONSTANT.START_NODE):
-            endXCoord_m, endYCoord_m = (input("End X and Y [Add Space in between the values]:")).split()
-            endXCoord, endYCoord = int((float(endXCoord_m) + 5) * 100), int((float(endYCoord_m) + 5) * 100)
+            # endXCoord_m, endYCoord_m = (input("End X and Y [Add Space in between the values]:")).split()
+            endXCoord_m, endYCoord_m = 3.2, 0.5
+            endXCoord, endYCoord = int((float(endXCoord_m)) * 100), int((float(endYCoord_m)) * 100)
             
             CONSTANT.GOAL_NODE = (endXCoord, endYCoord, 0, None)
             
@@ -82,11 +77,13 @@ if __name__ == "__main__":
                 turtlebot = TurtleBot()
 
                 start = input("Start the robot in gazebo (y/n): ")
-                if (start == 'y'):
+                if (start == 'y' or start == 'Y'):
                     try:
                         turtlebot.executeActions(actionsList)
                     except rospy.ROSInterruptException:
                         pass
+                else:
+                    pass
 
                 # cv2.waitKey(0)
                 quit()
