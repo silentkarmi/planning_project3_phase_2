@@ -69,9 +69,9 @@ if __name__ == "__main__":
                 print("--- %s seconds for finding the solution ---" % (time.time() - start_time))
                 
                 # VISUALIZATION PART
-                objTraversal.canvaArea.drawObstacles()
+                # objTraversal.canvaArea.drawObstacles()
                 # objTraversal.drawNodeTree() # draws the node tree after solution is found
-                objTraversal.drawSolution() # draws the solution
+                # objTraversal.drawSolution() # draws the solution
 
                 actionsList = objTraversal.getSolution()
                 turtlebot = TurtleBot()
