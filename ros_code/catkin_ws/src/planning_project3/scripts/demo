@@ -39,7 +39,7 @@ if __name__ == "__main__":
         objTraversal = Traversal()
         if objTraversal.canvaArea.isOutsideObstacleSpace(CONSTANT.START_NODE):
             # endXCoord_m, endYCoord_m = (input("End X and Y [Add Space in between the values]:")).split()
-            endXCoord_m, endYCoord_m = 3.2, 0.5
+            endXCoord_m, endYCoord_m = 3.25, 0.5
             endXCoord, endYCoord = int((float(endXCoord_m)) * 100), int((float(endYCoord_m)) * 100)
             
             CONSTANT.GOAL_NODE = (endXCoord, endYCoord, 0, None)
@@ -69,9 +69,9 @@ if __name__ == "__main__":
                 print("--- %s seconds for finding the solution ---" % (time.time() - start_time))
                 
                 # VISUALIZATION PART
-                # objTraversal.canvaArea.drawObstacles()
+                objTraversal.canvaArea.drawObstacles()
                 # objTraversal.drawNodeTree() # draws the node tree after solution is found
-                # objTraversal.drawSolution() # draws the solution
+                objTraversal.drawSolution() # draws the solution
 
                 actionsList = objTraversal.getSolution()
                 turtlebot = TurtleBot()

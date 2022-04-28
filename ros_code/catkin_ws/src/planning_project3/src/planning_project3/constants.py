@@ -57,7 +57,7 @@ class CONSTANT:
        RPM2 = 6 * CONSTANT.SCALE 
        ACTIONS = []
        ACTIONS.append((RPM1, RPM1))
-       ACTIONS.append((RPM2, RPM2))
+    #    ACTIONS.append((RPM2, RPM2))
        ACTIONS.append((RPM1, 0))
        ACTIONS.append((0, RPM1))
        ACTIONS.append((RPM2, 0))

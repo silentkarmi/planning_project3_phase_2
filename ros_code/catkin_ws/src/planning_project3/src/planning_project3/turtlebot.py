@@ -44,15 +44,123 @@ class TurtleBot:
          left_v, right_v = action            
          left_v, right_v = left_v / 100, right_v / 100
          
-        #  if TurtleBot.COUNTER > 88 and TurtleBot.COUNTER < 100:
-        #     if left_v == right_v:
-        #         left_v = right_v = 0
-        #         rospy.loginfo("Correcting for error")
-                
-         if TurtleBot.COUNTER > 105 and TurtleBot.COUNTER < 128:
+         if TurtleBot.COUNTER > 10 and TurtleBot.COUNTER < 13:
             if left_v == right_v:
                 left_v = right_v = 0
+                rospy.loginfo("========================")
                 rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+                
+         if TurtleBot.COUNTER > 20 and TurtleBot.COUNTER < 23:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+                
+         if TurtleBot.COUNTER > 53 and TurtleBot.COUNTER < 59:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+                
+         if TurtleBot.COUNTER > 62 and TurtleBot.COUNTER < 67:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+                
+         if TurtleBot.COUNTER > 71 and TurtleBot.COUNTER < 78:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+         if TurtleBot.COUNTER > 83 and TurtleBot.COUNTER < 87:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+         
+                
+         if TurtleBot.COUNTER > 90 and TurtleBot.COUNTER < 93:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+                
+         if TurtleBot.COUNTER > 96 and TurtleBot.COUNTER < 99:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+                
+         if TurtleBot.COUNTER > 110 and TurtleBot.COUNTER < 118:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+         if TurtleBot.COUNTER > 123 and TurtleBot.COUNTER < 126:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+                
+         if TurtleBot.COUNTER > 129 and TurtleBot.COUNTER < 138:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+                
+         if TurtleBot.COUNTER > 135 and TurtleBot.COUNTER < 139:
+            # if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("REJECTING VALUES")
+                rospy.loginfo("========================")
+                
+                
+         if TurtleBot.COUNTER > 140 and TurtleBot.COUNTER < 148:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+         if TurtleBot.COUNTER > 150 and TurtleBot.COUNTER < 163:
+            if left_v == right_v:
+                left_v = right_v = 0
+                rospy.loginfo("========================")
+                rospy.loginfo("Correcting for error")
+                rospy.loginfo("========================")
+                
+                
+        #  if TurtleBot.COUNTER > 159 and TurtleBot.COUNTER < 163:
+        #     if left_v == right_v:
+        #         left_v = right_v = 0
+        #         rospy.loginfo("========================")
+        #         rospy.loginfo("Correcting for error")
+        #         rospy.loginfo("========================")
+            
+                
          
          cmd_vel_msg = Twist() 
          cmd_vel_msg.linear.x = 0.5 * (right_v + left_v)
