@@ -10,7 +10,7 @@ class CONSTANT:
     GOAL_NODE = (0, 0, 0)
 
     SCALE = 0.1
-    CANVAS_WIDTH = int(3500 * SCALE)
+    CANVAS_WIDTH = int(3650 * SCALE)
     CANVAS_HEIGHT = int(1000 * SCALE)
     
     
@@ -21,7 +21,7 @@ class CONSTANT:
 
      
     
-    GOAL_THRESOLD = 400  * SCALE 
+    GOAL_THRESOLD = 15  * SCALE 
     
     WALL_CLEARANCE = 60  * SCALE 
     CLEARANCE = WALL_CLEARANCE + MOBILE_ROBOT_RADIUS 

@@ -60,6 +60,14 @@ class TurtleBot:
                 rospy.loginfo("========================")
                 
                 
+                
+        #  if TurtleBot.COUNTER > 44 and TurtleBot.COUNTER < 48:
+        #     if left_v == right_v:
+        #         left_v = right_v = 0
+        #         rospy.loginfo("========================")
+        #         rospy.loginfo("Correcting for error")
+        #         rospy.loginfo("========================")
+                
          if TurtleBot.COUNTER > 53 and TurtleBot.COUNTER < 59:
             if left_v == right_v:
                 left_v = right_v = 0

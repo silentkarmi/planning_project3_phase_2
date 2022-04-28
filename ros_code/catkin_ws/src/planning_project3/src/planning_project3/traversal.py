@@ -180,7 +180,7 @@ class Traversal:
             if (len(node.coord) < 5): 
                 continue
             actionsList.append(node.coord[4])
-            
+        
         actionsList.append((0,0)) #For stopping the robot
 
         return actionsList
