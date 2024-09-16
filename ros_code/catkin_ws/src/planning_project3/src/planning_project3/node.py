@@ -11,6 +11,8 @@ from . utility import Utility
 @dataclass
 class Node:
     ACTION_SET = CONSTANT.get_action_sets() # list of (vL, vR)
+    CONTROL_SPEED = 1 * CONSTANT.SCALE * 0.01
+    COUNTER = 0
     
     coord: tuple()
     cost2come: int = 0
@@ -61,15 +63,16 @@ class Node:
         
     @staticmethod   
     def isCoordValid(coord):
-        x = coord[0]
-        y = coord[1]
-        if x < CONSTANT.CANVAS_WIDTH - CONSTANT.CLEARANCE and \
-        y < CONSTANT.CANVAS_HEIGHT - CONSTANT.CLEARANCE and \
-        x > CONSTANT.CLEARANCE  and \
-        y > CONSTANT.CLEARANCE:
-            return True
-        else:
-            return False
+        return True
+        # x = coord[0]
+        # y = coord[1]
+        # if x < CONSTANT.CANVAS_WIDTH - CONSTANT.CLEARANCE and \
+        # y < CONSTANT.CANVAS_HEIGHT - CONSTANT.CLEARANCE and \
+        # x > CONSTANT.CLEARANCE  and \
+        # y > CONSTANT.CLEARANCE:
+        #     return True
+        # else:
+        #     return False
         
     def createNodes(self):
         nodes = []
@@ -87,6 +90,15 @@ class Node:
         
         objNode = None
         vL, vR = action
+        Node.COUNTER += 1
+        # if Node.COUNTER > 50:
+        #     vL -= Node.CONTROL_SPEED
+        #     vR -= Node.CONTROL_SPEED
+            
+            
+        # if Node.COUNTER > 300:
+        #     vL -= 3 * Node.CONTROL_SPEED
+        #     vR -= 3 * Node.CONTROL_SPEED
         
         if vL < 0 and vR < 0:
             pass # don't handle backward motion
